@@ -319,6 +319,36 @@ section{padding:110px 0;border-top:1px solid var(--line)}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--dim);font-size:13px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
+/* ownership + quality */
+.own-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.own-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s,transform .2s}
+.own-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.own-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--bg2);border:1px solid var(--line);font-size:18px}
+.own-card h3{font-size:19px}
+.own-card ul{list-style:none;display:grid;gap:8px}
+.own-card li{position:relative;padding-left:16px;color:#C9D4DE;font-size:14px;line-height:1.5}
+.own-card li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.own-proof{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.own-proof b{color:var(--text)}
+.quality{margin-top:56px;background:linear-gradient(160deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:22px;padding:34px}
+.q-head{max-width:640px;margin-bottom:24px}
+.q-head h3{font-size:clamp(22px,2.6vw,28px);margin-bottom:8px}
+.q-head p:last-child{color:var(--muted)}
+.q-steps{list-style:none;counter-reset:q;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.q-steps li{counter-increment:q;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.q-steps li::before{content:"0" counter(q);font-family:var(--font-h);font-size:13px;font-weight:600;color:var(--accent)}
+.q-steps b{font-size:15px}
+.q-steps span{font-size:13px;color:var(--muted);line-height:1.5}
+.q-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:24px;padding-top:22px;border-top:1px dashed var(--line)}
+.q-stats b{display:block;font-family:var(--font-h);font-size:28px;color:var(--accent);line-height:1.1}
+.q-stats span{font-size:12.5px;color:var(--muted)}
+.jbh{margin:14px 0 6px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:600}
+.jb{padding-left:18px;display:grid;gap:6px}
+.jb li{color:#C9D4DE;font-size:13.5px;line-height:1.5}
+.jb li::marker{color:var(--accent)}
+@media (max-width:960px){.own-grid{grid-template-columns:1fr 1fr}.q-steps{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.own-grid,.q-steps{grid-template-columns:1fr}.quality{padding:22px}}
+
 /* reveal */
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
@@ -376,6 +406,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <ul class="links" id="navlinks">
       <li><a href="#work">Work</a></li>
       <li><a href="#value">Delivery</a></li>
+      <li><a href="#ownership">Ownership</a></li>
       <li><a href="#approach">Approach</a></li>
       <li><a href="#built">Built</a></li>
       <li><a href="#journey">Journey</a></li>
@@ -394,7 +425,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="wrap">
     <div class="role rv"><span class="dot" aria-hidden="true"></span>Project &amp; Delivery Manager · AI &amp; Web3</div>
     <h1 class="rv">I take complex programs from kickoff to <span class="rot" id="rot">go-live.</span></h1>
-    <p class="lead rv">9+ years planning and delivering multi-stakeholder blockchain and GenAI programs for 12+ global clients, with teams of up to 40. Today I run delivery across a 7-product enterprise Web3 suite on Hedera and lead a team of five.<br>I use AI to surface risk earlier and cut reporting overhead.</p>
+    <p class="lead rv">9+ years planning and delivering multi-stakeholder blockchain and AI programs for 12+ global clients, with teams of up to 40. Today I'm accountable for delivery across a 7-product enterprise Web3 suite on Hedera and lead a team of five.<br>I use AI to surface risk earlier and cut reporting overhead.</p>
     <div class="cta rv">
       <a class="btn primary" href="#work">See the work ↓</a>
       <a class="btn" href="Priyanka_Jain_Resume.pdf" target="_blank" rel="noopener">Download CV ↗</a>
@@ -426,7 +457,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
     <div class="filters rv" role="group" aria-label="Filter case studies">
       <button class="chip" aria-pressed="true" data-f="all">All</button>
-      <button class="chip" aria-pressed="false" data-f="ai">GenAI</button>
+      <button class="chip" aria-pressed="false" data-f="ai">AI</button>
       <button class="chip" aria-pressed="false" data-f="web3">Blockchain / Web3</button>
       <button class="chip" aria-pressed="false" data-f="climate">Climate &amp; ESG</button>
       <button class="chip" aria-pressed="false" data-f="identity">Digital identity</button>
@@ -437,17 +468,24 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <!-- Flowgenix -->
       <article class="case rv" data-tags="ai climate">
         <div class="case-body">
-          <div class="case-meta"><span class="pill g">GenAI · Agentic</span><span class="pill">The Hashgraph Group</span><span>2025–now</span></div>
+          <div class="case-meta"><span class="pill g">AI · Agentic</span><span class="pill">The Hashgraph Group</span><span>2025–now</span></div>
           <h3>Flowgenix-AI</h3>
-          <p class="sub">A multi-agent GenAI system that turns carbon methodology documents into workflows.</p>
+          <p class="sub">A multi-agent AI system that turns carbon methodology documents into workflows.</p>
           <div class="tabs" role="tablist" aria-label="Flowgenix-AI case">
             <button class="tab" role="tab" aria-selected="true">Challenge</button>
+            <button class="tab" role="tab" aria-selected="false">My role</button>
             <button class="tab" role="tab" aria-selected="false">Delivery</button>
             <button class="tab" role="tab" aria-selected="false">Outcome</button>
           </div>
           <div class="panel" role="tabpanel"><ul>
             <li>Before a carbon methodology could go live on a registry, subject-matter experts had to translate a long methodology PDF into workflows, forms, eligibility rules and formulas by hand.</li>
             <li>It took 4–5 months per methodology, which made onboarding the bottleneck for growth in carbon markets.</li>
+          </ul></div>
+          <div class="panel" role="tabpanel" hidden><ul>
+            <li><b>Accountable for</b> end-to-end delivery of Flowgenix-AI, from phase plan to production use.</li>
+            <li>Owned the delivery plan and the sequencing of each agent workstream against the EcoGuard roadmap.</li>
+            <li>Defined acceptance criteria for every agent output and set the expert review gates between phases.</li>
+            <li>Coordinated subject-matter experts and engineers, and tracked progress and risks through each phase.</li>
           </ul></div>
           <div class="panel" role="tabpanel" hidden><ul>
             <li>Broke the build into phased workstreams, one per specialist agent: a parser builds a structured document model, then generators produce BPMN, forms, validation rules, DMN and calculation logic.</li>
@@ -457,6 +495,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <div class="panel" role="tabpanel" hidden><ul>
             <li>Methodology processing dropped from <b>4–5 months to 1–2 days</b>, about 98% faster.</li>
             <li>The expert's role moved from writing every artifact to reviewing what the agents produce, which speeds up carbon-market onboarding on EcoGuard.</li>
+            <li><b>Quality:</b> no output moves to the next phase without expert sign-off.</li>
           </ul></div>
           
           
@@ -472,12 +511,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p class="sub">One of the largest production blockchain implementations, with one shared record for the hardware supply chain.</p>
           <div class="tabs" role="tablist" aria-label="Supply chain case">
             <button class="tab" role="tab" aria-selected="true">Challenge</button>
+            <button class="tab" role="tab" aria-selected="false">My role</button>
             <button class="tab" role="tab" aria-selected="false">Delivery</button>
             <button class="tab" role="tab" aria-selected="false">Outcome</button>
           </div>
           <div class="panel" role="tabpanel"><ul>
             <li>Suppliers, manufacturers and logistics partners each kept their own records, so reconciling them was slow and costly and disputes were hard to settle.</li>
             <li>The program was large and spread across several workstreams, with many stakeholders to keep aligned.</li>
+          </ul></div>
+          <div class="panel" role="tabpanel" hidden><ul>
+            <li><b>Accountable for</b> end-to-end delivery across several concurrent workstreams.</li>
+            <li>Led a 30+ person cross-functional Agile team: sprint planning, capacity planning, ceremonies and client demos.</li>
+            <li>Owned the delivery model design (data-flow diagrams, process maps, mockups) before build started.</li>
+            <li>Kept a large multinational stakeholder group aligned on priorities, progress and escalations.</li>
           </ul></div>
           <div class="panel" role="tabpanel" hidden><ul>
             <li>Led end-to-end delivery. Designed scalable delivery models (data-flow diagrams, process maps, mockups) up front so every workstream built the same thing the first time.</li>
@@ -487,7 +533,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <div class="panel" role="tabpanel" hidden><ul>
             <li><b>$50M</b> reduction in supply-chain costs.</li>
             <li>Won the <b>Gartner Power of the Profession Award</b>.</li>
-            <li>The up-front delivery design cut rework by <b>35%</b> and raised blockchain project ROI by <b>10%</b>.</li>
+            <li><b>Quality:</b> the up-front delivery design cut rework by <b>35%</b> and raised blockchain project ROI by <b>10%</b>.</li>
           </ul></div>
           
           
@@ -503,12 +549,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p class="sub">A portfolio governance framework that decides which blockchain programs to fund, then tracks the value they deliver.</p>
           <div class="tabs" role="tablist" aria-label="Value Realization Office case">
             <button class="tab" role="tab" aria-selected="true">Challenge</button>
+            <button class="tab" role="tab" aria-selected="false">My role</button>
             <button class="tab" role="tab" aria-selected="false">Delivery</button>
             <button class="tab" role="tab" aria-selected="false">Outcome</button>
           </div>
           <div class="panel" role="tabpanel"><ul>
             <li>Blockchain opportunities were often chosen on enthusiasm rather than evidence. Some use cases didn't need a shared ledger at all, and investment, reuse and delivery risk weren't weighed the same way twice.</li>
             <li>Leadership had no common way to compare opportunities, weigh delivery risk, or show ROI across engagements.</li>
+          </ul></div>
+          <div class="panel" role="tabpanel" hidden><ul>
+            <li><b>Accountable for</b> designing the framework and making it usable across engagements.</li>
+            <li>Defined the value levers, scoring criteria, weightings and the blockchain-fit and readiness checks.</li>
+            <li>Ran opportunity assessments and turned the results into pursue-or-park recommendations.</li>
+            <li>Tracked outcomes and ROI across engagements so leadership could see value delivered, not just effort spent.</li>
           </ul></div>
           <div class="panel" role="tabpanel" hidden><ul>
             <li>Built a weighted assessment across six value levers. Each question is scored 1–5 and weighted by its priority.</li>
@@ -533,12 +586,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p class="sub">Verifiable identity for people, devices and AI agents, built with NTT DOCOMO and IDTrust on Hedera.</p>
           <div class="tabs" role="tablist" aria-label="Identity case">
             <button class="tab" role="tab" aria-selected="true">Challenge</button>
+            <button class="tab" role="tab" aria-selected="false">My role</button>
             <button class="tab" role="tab" aria-selected="false">Delivery</button>
             <button class="tab" role="tab" aria-selected="false">Outcome</button>
           </div>
           <div class="panel" role="tabpanel"><ul>
             <li>Passwords get phished, API keys are shared between services and people, and service accounts collect privileges nobody audits. When something goes wrong, no one can say who acted, who authorised it, or when.</li>
             <li>AI agents are now entering enterprise workflows with the same broken credential model, acting at machine speed with no human in the loop.</li>
+          </ul></div>
+          <div class="panel" role="tabpanel" hidden><ul>
+            <li><b>Accountable for</b> coordinating delivery across partners, from the NTT DOCOMO wallet to the IDTrust programme.</li>
+            <li>Owned the scope and requirements, and kept them aligned with open standards from the start.</li>
+            <li>Coordinated partner teams and dependencies across enterprise and government use cases.</li>
+            <li>Made sure policy checks and human approval were part of the requirements, not added at the end.</li>
           </ul></div>
           <div class="panel" role="tabpanel" hidden><ul>
             <li>Coordinated delivery with partners (NTT DOCOMO, then the IDTrust programme) around one scope: every actor (employee, customer, device or AI agent) gets its own <code>did:hedera</code> identifier, with signed credentials that verify without a central authority.</li>
@@ -563,12 +623,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p class="sub">An enterprise carbon marketplace on Hedera that manages the full carbon-credit lifecycle.</p>
           <div class="tabs" role="tablist" aria-label="EcoGuard case">
             <button class="tab" role="tab" aria-selected="true">Challenge</button>
+            <button class="tab" role="tab" aria-selected="false">My role</button>
             <button class="tab" role="tab" aria-selected="false">Delivery</button>
             <button class="tab" role="tab" aria-selected="false">Outcome</button>
           </div>
           <div class="panel" role="tabpanel"><ul>
             <li>Carbon markets depend on trust between six very different parties: registries, methodology developers, validation and verification bodies, project proponents, buyers and platform admins.</li>
             <li>Each one needs a different workflow, and every credit has to be traceable from issuance to retirement.</li>
+          </ul></div>
+          <div class="panel" role="tabpanel" hidden><ul>
+            <li><b>Accountable for</b> client rollouts across India, the Philippines and Latin America.</li>
+            <li>Owned requirements and workflows for six stakeholder roles.</li>
+            <li>Ran gap analyses against national-registry requirements to scope each rollout.</li>
+            <li>Sequenced EcoGuard work with Flowgenix-AI so the biggest onboarding bottleneck was removed first.</li>
           </ul></div>
           <div class="panel" role="tabpanel" hidden><ul>
             <li>Mapped requirements and workflows for each of the six stakeholder roles, with Hedera providing an immutable audit trail.</li>
@@ -592,12 +659,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p class="sub">Digital Product Passports that track provenance, emissions and sourcing, aligned with EU ESPR.</p>
           <div class="tabs" role="tablist" aria-label="TrackTrace case">
             <button class="tab" role="tab" aria-selected="true">Challenge</button>
+            <button class="tab" role="tab" aria-selected="false">My role</button>
             <button class="tab" role="tab" aria-selected="false">Delivery</button>
             <button class="tab" role="tab" aria-selected="false">Outcome</button>
           </div>
           <div class="panel" role="tabpanel"><ul>
             <li>Regulation is moving fast. The EU Ecodesign for Sustainable Products Regulation (ESPR) introduces Digital Product Passports, and similar transparency rules are emerging in other regions, while consumers expect proof of ethical sourcing and emissions.</li>
             <li>Supply-chain data is fragmented across parties, so proving origin, chain of custody and emissions for a single product is costly, error-prone and hard to scale, especially while keeping supplier data confidential.</li>
+          </ul></div>
+          <div class="panel" role="tabpanel" hidden><ul>
+            <li><b>Accountable for</b> scoping the platform and planning delivery against fast-moving regulation.</li>
+            <li>Owned requirements against EU ESPR Digital Product Passport rules.</li>
+            <li>Planned an MVP-first rollout to validate the approach before scaling it to other industries.</li>
+            <li>Kept on-chain and off-chain data decisions explicit so each enterprise could sign them off.</li>
           </ul></div>
           <div class="panel" role="tabpanel" hidden><ul>
             <li>Scoped a configurable model: each enterprise chooses what is anchored on-chain and what stays off-chain, so proofs are public while commercial data stays private.</li>
@@ -622,12 +696,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p class="sub">For Petronas, I ran the MPM discovery programme and the blockchain feasibility assessment for Vessel Uberization.</p>
           <div class="tabs" role="tablist" aria-label="Petronas case">
             <button class="tab" role="tab" aria-selected="true">Challenge</button>
+            <button class="tab" role="tab" aria-selected="false">My role</button>
             <button class="tab" role="tab" aria-selected="false">Delivery</button>
             <button class="tab" role="tab" aria-selected="false">Outcome</button>
           </div>
           <div class="panel" role="tabpanel"><ul>
             <li>The MPM business had pain points across planning, execution and end-to-end visibility, with no agreed backlog of which to tackle first.</li>
             <li>Vessel Uberization ran booking, routing, pricing and chargebacks through emails, spreadsheets and manual reconciliation. Cost breakdowns weren't shared, and cost-allocation disputes were hard to settle.</li>
+          </ul></div>
+          <div class="panel" role="tabpanel" hidden><ul>
+            <li><b>Accountable for</b> the MPM discovery programme and the Vessel Uberization feasibility assessment.</li>
+            <li>Planned and facilitated onsite sessions with 20+ stakeholders and workshops with executives across eight divisions.</li>
+            <li>Owned the prioritized initiative set, the feasibility criteria and the roadmap recommendation.</li>
+            <li>Validated requirements with users through a day-in-the-life walkthrough before recommending a solution path.</li>
           </ul></div>
           <div class="panel" role="tabpanel" hidden><ul>
             <li>Ran onsite discovery with 20+ stakeholders, then facilitated prioritization with senior executives across eight divisions and consolidated the output into six initiatives.</li>
@@ -668,19 +749,57 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </section>
 
+
+<!-- OWNERSHIP -->
+<section id="ownership">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">What I own</p>
+      <h2>Accountable from kickoff to go-live.</h2>
+      <p class="lead">On every program, these are the things I'm answerable for, what I actually do about them, and the evidence from past delivery.</p>
+    </div>
+    <div class="own-grid">
+      <article class="own-card rv"><span class="own-ic" aria-hidden="true">🎯</span><h3>Scope &amp; planning</h3><ul><li>Agree objectives, scope and success criteria with sponsors at kickoff</li><li>Break scope into milestones, epics, stories and acceptance criteria</li><li>Map dependencies and sequence concurrent workstreams</li></ul><p class="own-proof"><b>Evidence:</b> 7-product portfolio roadmap; 20+ discovery workshops</p></article>
+      <article class="own-card rv"><span class="own-ic" aria-hidden="true">🗓️</span><h3>Schedule &amp; milestones</h3><ul><li>Own the delivery plan and sprint cadence</li><li>Track progress against milestones and re-plan early when things move</li><li>Protect go-live dates by managing scope trade-offs openly</li></ul><p class="own-proof"><b>Evidence:</b> platform integration delivered 2 weeks early; 25% faster delivery</p></article>
+      <article class="own-card rv"><span class="own-ic" aria-hidden="true">👥</span><h3>Team &amp; capacity</h3><ul><li>Lead cross-functional, multinational Agile teams</li><li>Run capacity planning, ceremonies and client demos</li><li>Coach and grow the people on the team</li></ul><p class="own-proof"><b>Evidence:</b> teams of 30+; Scrum for 40+ members; coaching a team of five today</p></article>
+      <article class="own-card rv"><span class="own-ic" aria-hidden="true">⚠️</span><h3>Risk &amp; issues</h3><ul><li>Surface risks, delays and bandwidth issues before they hit the plan</li><li>Agree mitigations and owners, and escalate early</li><li>Use AI dashboards to watch sprint health continuously</li></ul><p class="own-proof"><b>Evidence:</b> AI-powered sprint-risk dashboards on myWizard</p></article>
+      <article class="own-card rv"><span class="own-ic" aria-hidden="true">📣</span><h3>Stakeholders &amp; reporting</h3><ul><li>Keep clients, engineering and executives aligned on one plan</li><li>Give honest, regular status with clear decisions needed</li><li>Automate reporting so the team spends time delivering</li></ul><p class="own-proof"><b>Evidence:</b> 12+ enterprise clients; 35% less manual tracking</p></article>
+      <article class="own-card rv"><span class="own-ic" aria-hidden="true">✅</span><h3>Quality &amp; acceptance</h3><ul><li>Set a clear Definition of Done and testable acceptance criteria</li><li>Build review gates into the plan, not after it</li><li>Sign off releases only when they meet the agreed bar</li></ul><p class="own-proof"><b>Evidence:</b> zero critical defects at go-live; 35% less rework</p></article>
+    </div>
+
+    <div class="quality rv">
+      <div class="q-head">
+        <p class="eyebrow">Quality in delivery</p>
+        <h3>Quality is planned in, not inspected in.</h3>
+        <p>Fixing a defect after release costs far more than preventing it. These are the checks I build into every plan.</p>
+      </div>
+      <ol class="q-steps">
+        <li><b>Clear requirements</b><span>Acceptance criteria engineers and testers can both work from.</span></li>
+        <li><b>Design before build</b><span>Data flows, process maps and mockups agreed up front.</span></li>
+        <li><b>Test from day one</b><span>Test cases generated from requirements with AI, so QA is ready when code is.</span></li>
+        <li><b>Review gates</b><span>Experts sign off each phase before the next one starts.</span></li>
+        <li><b>Demo and accept</b><span>Sprint demos with the client and sign-off against the Definition of Done.</span></li>
+      </ol>
+      <div class="q-stats"><div><b>0</b><span>critical defects at go-live</span></div><div><b>35%</b><span>less rework</span></div><div><b>2 wks</b><span>early delivery</span></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- APPROACH -->
 <section id="approach">
   <div class="wrap">
     <div class="sec-head rv">
       <p class="eyebrow">Approach</p>
       <h2>Delivery discipline over ceremony.</h2>
-      <p class="lead">I've been a Scrum Master, Product Owner and Delivery Lead, and I use frameworks as tools, not as goals. These principles guide how I run programs.</p>
+      <p class="lead">I've run delivery as a Scrum Master, Project Manager and Delivery Lead, and I use frameworks as tools, not as goals. These principles guide how I run programs.</p>
     </div>
     <div class="principles">
       <div class="pr rv"><button aria-expanded="false"><span class="num">01</span><h3>Agree what done looks like before day one.</h3><span class="plus" aria-hidden="true">+</span></button><div class="ans"><p>Scope, success criteria and owners are written down at kickoff. Every piece of work traces back to them, so scope changes are visible decisions, not quiet drift.</p></div></div>
       <div class="pr rv"><button aria-expanded="false"><span class="num">02</span><h3>Plan for the risk, not the happy path.</h3><span class="plus" aria-hidden="true">+</span></button><div class="ans"><p>Eight years of delivery taught me where programs actually slip: dependencies, capacity and unclear requirements. I surface those risks early and plan mitigations before committing a team, not after.</p></div></div>
       <div class="pr rv"><button aria-expanded="false"><span class="num">03</span><h3>Keep humans in the loop where trust matters.</h3><span class="plus" aria-hidden="true">+</span></button><div class="ans"><p>AI should do the heavy lifting, and experts should own the judgment calls. Flowgenix-AI is built around that split, because that split is what makes the output trustworthy enough to use.</p></div></div>
       <div class="pr rv"><button aria-expanded="false"><span class="num">04</span><h3>Keep status honest and visible.</h3><span class="plus" aria-hidden="true">+</span></button><div class="ans"><p>Engineering, clients and executives align faster when they see real progress, open risks and what we're not doing and why. I'd rather raise a red flag early than explain a missed date later.</p></div></div>
+      <div class="pr rv"><button aria-expanded="false"><span class="num">05</span><h3>Build quality in, don't test it in.</h3><span class="plus" aria-hidden="true">+</span></button><div class="ans"><p>Clear acceptance criteria, design agreed before build and review gates between phases catch problems while they're cheap to fix. That's how we cut rework by 35% and went live with zero critical defects.</p></div></div>
+      <div class="pr rv"><button aria-expanded="false"><span class="num">06</span><h3>Own the outcome, not just the plan.</h3><span class="plus" aria-hidden="true">+</span></button><div class="ans"><p>A green status report means nothing if the client doesn't get the value. I measure delivery by what changed for the business, such as cost saved or onboarding time cut, and I stay accountable until it lands.</p></div></div>
     </div>
 
     <div class="sec-head rv" style="margin-top:76px;margin-bottom:32px">
@@ -707,7 +826,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <h3>AI-augmented delivery</h3>
         <p class="how-intro">Use AI to move faster, while I keep ownership of decisions, quality and delivery.</p>
         <ul class="how-list">
-          <li><b>Risk:</b> GenAI dashboards flag sprint risks, delays and bandwidth issues before they hit the plan.</li>
+          <li><b>Risk:</b> AI dashboards flag sprint risks, delays and bandwidth issues before they hit the plan.</li>
           <li><b>Reporting:</b> automated status reporting that cut manual tracking by 35%.</li>
           <li><b>Artefacts:</b> generate stories, acceptance criteria and test cases from requirements to speed up QA readiness.</li>
           <li><b>Tracking:</b> use Jira and Confluence to summarise progress and dependencies across teams.</li>
@@ -773,7 +892,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </div>
       <div class="cred-col rv">
         <h3 class="cred-h"><span class="cred-ic" aria-hidden="true">🎓</span>Certifications</h3>
-        <div class="cred-list"><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>CSPO</b><small>Scrum Alliance</small></div></div><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>AI Product Management</b><small>Duke University</small></div></div><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>Digital Product Management</b><small>UVA Darden</small></div></div><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>Claude Code: Software Engineering with GenAI Agents</b><small>Anthropic</small></div></div><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>Corda Developer</b><small>R3</small></div></div><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>Green Software (LFC131)</b><small>Linux Foundation</small></div></div></div>
+        <div class="cred-list"><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>CSPO</b><small>Scrum Alliance</small></div></div><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>AI Product Management</b><small>Duke University</small></div></div><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>Digital Product Management</b><small>UVA Darden</small></div></div><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>Claude Code: Software Engineering with AI Agents</b><small>Anthropic</small></div></div><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>Corda Developer</b><small>R3</small></div></div><div class="cred-item"><span class="cred-mark" aria-hidden="true">✓</span><div><b>Green Software (LFC131)</b><small>Linux Foundation</small></div></div></div>
       </div>
     </div>
   </div>
@@ -789,7 +908,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <p class="eyebrow rv">About</p>
       <h2 class="rv">Engineering foundations. Delivery outcomes.</h2>
       <p class="rv">I trained as a chemical engineer at IIT Roorkee, where I published research on microalgal biodiesel in <em>Bioresource Technology</em>. That habit of modelling complex systems carried over into technology.</p>
-      <p class="rv">I spent eight-plus years at Accenture on blockchain and GenAI programs for 12+ global clients, including Microsoft, Petronas, Google, Walmart, NTT DOCOMO, Kuehne+Nagel and AB InBev. I worked my way from business analyst to Scrum Master, project manager, product owner and delivery lead, running teams of up to 40 across time zones. Today I'm Lead Product Manager at The Hashgraph Group, where I lead delivery across a 7-product enterprise suite on Hedera and a team of five.</p>
+      <p class="rv">I spent eight-plus years at Accenture on blockchain and AI programs for 12+ global clients, including Microsoft, Petronas, Google, Walmart, NTT DOCOMO, Kuehne+Nagel and AB InBev. I worked my way from business analyst to Scrum Master, project manager and delivery lead, running teams of up to 40 across time zones. Today I'm Lead Product Manager at The Hashgraph Group, where I lead delivery across a 7-product enterprise suite on Hedera and a team of five.</p>
       <p class="rv">I'm most useful where the program is complex and the stakeholders are many: multinational teams, regulated domains, and clients who need a clear plan and honest status.</p>
     </div>
   </div>
@@ -898,10 +1017,10 @@ document.querySelectorAll('.pr').forEach(p=>{const b=p.querySelector('button'),a
 
 /* journey */
 const J=[
- {t:'Lead Product Manager',s:'Leads delivery across 7+ Web3 products on Hedera and coaches a team of five.',o:'The Hashgraph Group · Gurugram',w:'Dec 2025 – Present',b:['Own product strategy and end-to-end delivery for 7+ enterprise Web3/DLT products on Hedera: digital identity, asset tokenisation, carbon markets, payments and supply-chain traceability.','Lead, train and coach a team of 5 product owners on discovery, backlog ownership and AI-first delivery.','Led Flowgenix-AI, an AI-driven carbon-reporting product that cut customer onboarding from 4–5 months to 1–2 days (~98% faster).','Drive EcoGuard, an enterprise carbon marketplace that uses Hedera DLT and smart contracts to manage the full carbon-credit lifecycle.','Drive enterprise integrations built on DIDs, Verifiable Credentials, ERC-1155, Hedera Consensus Service and smart contracts.'],p:['Portfolio delivery','Team leadership','Agentic AI','Hedera']},
- {t:'Delivery Lead · Blockchain & GenAI',s:'GenAI use cases for myWizard, with delivery time down 25%.',o:'Accenture Technology · myWizard · Gurugram',w:'Oct 2024 – Dec 2025',b:['Defined GenAI use cases for automation, quality and knowledge management on Accenture\'s myWizard platform.','Led a use case that generates user stories and test cases from models and requirements, speeding up specs and QA readiness.','Used GenAI-powered dashboards to flag sprint risks, delays and bandwidth issues early.','Championed GenAI in Agile delivery through training and change management; AI tooling cut delivery time by 25%.','Introduced automated reporting that cut client manual tracking by 35% (Client Value Creation Spot Award).'],p:['GenAI delivery','Risk dashboards','Change management']},
- {t:'Product Owner · Blockchain Programs',s:'Led delivery of Microsoft\'s Azure Supply Chain blockchain program, with $50M in cost savings, and teams of 30+.',o:'Accenture Technology · Gurugram',w:'Oct 2019 – Oct 2024',b:['Led end-to-end delivery of Microsoft\'s Azure Supply Chain blockchain initiative, helping cut supply-chain costs by $50M (Gartner Power of the Profession Award).','Ran multi-stakeholder programs across 12+ clients and managed 30+ member cross-functional Agile teams.','Designed delivery models that cut rework by 35% and raised blockchain project ROI by 10%.','Designed a Value Realization Office framework to track outcomes and ROI across engagements.','Supported RFP responses and client pitches, and facilitated Scrum for 40+ global team members.'],p:['Program delivery','Scrum at scale','Value realization','RFP & solutioning']},
- {t:'Business Analyst · Blockchain Solutioning',s:'Solutioning and proofs of concept across oil & gas, logistics and retail.',o:'Accenture Technology · Bengaluru',w:'Jul 2017 – Oct 2019',b:['Worked on solutioning with Microsoft, Petronas, Google, Kuehne+Nagel, AB InBev, Walmart and GJEPC across supply chain, oil & gas, logistics, retail and gems & jewellery.','Contributed to blockchain co-innovation for Petronas, recognized with Co-Innovation and Client Innovation Awards.','Ran 20+ Design Thinking workshops and 30+ ideation and technology-readiness assessments.','Built 10+ blockchain proofs of concept and a reusable accelerator library that sped up delivery by 20%.'],p:['Discovery','Workshops','Proofs of concept']},
+ {t:'Lead Product Manager',s:'Leads delivery across 7+ Web3 products on Hedera and coaches a team of five.',o:'The Hashgraph Group · Gurugram',w:'Dec 2025 – Present',b:['Accountable for end-to-end delivery of 7+ enterprise Web3/DLT products on Hedera: digital identity, asset tokenisation, carbon markets, payments and supply-chain traceability.','Lead, train and coach a team of five on planning, execution and AI-first delivery.','Delivered Flowgenix-AI with expert review gates between phases, cutting customer onboarding from 4–5 months to 1–2 days (~98% faster).','Drive EcoGuard client rollouts across India, the Philippines and Latin America, including a state-government agency.','Coordinate enterprise integrations built on DIDs, Verifiable Credentials, ERC-1155, Hedera Consensus Service and smart contracts.'],p:['Portfolio delivery','Team leadership','Agentic AI','Hedera']},
+ {t:'Delivery Lead · Blockchain & AI',s:'AI use cases for myWizard, with delivery time down 25%.',o:'Accenture Technology · myWizard · Gurugram',w:'Oct 2024 – Dec 2025',b:['Defined and delivered AI use cases for automation, quality and knowledge management on Accenture\'s myWizard platform.','Led a use case that generates user stories and test cases from requirements, speeding up QA readiness.','Ran AI-powered dashboards to flag sprint risks, delays and bandwidth issues before they hit the plan.','Led AI adoption in Agile delivery through training and change management, cutting delivery time by 25%.','Introduced automated status reporting that cut client manual tracking by 35% (Client Value Creation Spot Award).'],p:['AI delivery','Risk dashboards','Change management']},
+ {t:'Project Manager · Blockchain Programs',s:'Led delivery of Microsoft\'s Azure Supply Chain blockchain program, with $50M in cost savings, and teams of 30+.',o:'Accenture Technology · Gurugram',w:'Oct 2019 – Oct 2024',b:['Led end-to-end delivery of Microsoft\'s Azure Supply Chain blockchain program, helping cut supply-chain costs by $50M (Gartner Power of the Profession Award).','Managed multi-stakeholder programs across 12+ clients and 30+ member cross-functional Agile teams.','Designed delivery models up front that cut rework by 35% and raised blockchain project ROI by 10%.','Set up a Value Realization Office framework to track outcomes and ROI across engagements.','Facilitated Scrum for 40+ global team members, and supported RFP responses and client pitches.'],p:['Program delivery','Scrum at scale','Value realization','RFP & solutioning']},
+ {t:'Business Analyst · Blockchain Solutioning',s:'Solutioning and proofs of concept across oil & gas, logistics and retail.',o:'Accenture Technology · Bengaluru',w:'Jul 2017 – Oct 2019',b:['Delivered solutioning work with Microsoft, Petronas, Google, Kuehne+Nagel, AB InBev, Walmart and GJEPC across supply chain, oil & gas, logistics, retail and gems & jewellery.','Contributed to blockchain co-innovation for Petronas, recognized with Co-Innovation and Client Innovation Awards.','Ran 20+ Design Thinking workshops and 30+ ideation and technology-readiness assessments.','Built 10+ blockchain proofs of concept and a reusable accelerator library that sped up delivery by 20%.'],p:['Discovery','Workshops','Proofs of concept']},
  {t:'M.Tech, Chemical Engineering',s:'Research in microalgal biodiesel and sustainability.',o:'IIT Roorkee',w:'2015 – 2017',b:['CGPA 8.9.','Published research in Bioresource Technology on microalgal biodiesel and lipid accumulation.','B.E. in Chemical Engineering, SDM College of Engineering & Technology, Dharwad (VTU), 2010–2014, CGPA 9.1, with a specialization in sustainability.'],p:['Research','Systems thinking']}
 ];
 const jmap=document.getElementById('jmap');
@@ -915,7 +1034,7 @@ J.forEach((r,i)=>{const n=document.createElement('div');
   }else{
     const side=i%2===0?'L':'R';
     n.className='jn '+side+(i===0?' now':'');
-    n.innerHTML='<span class="jnode" aria-hidden="true"></span><div class="yr"><b>'+year+'</b><span>'+r.w+'</span></div><article class="jc"><div class="jtop">'+(i===0?'<span class="jcur">Current</span>':'')+'</div><h3>'+r.t+'</h3><div class="org">'+r.o+'</div><p class="js">'+r.s+'</p><div class="jchips">'+r.p.map(x=>'<span>'+x+'</span>').join('')+'</div></article>';
+    n.innerHTML='<span class="jnode" aria-hidden="true"></span><div class="yr"><b>'+year+'</b><span>'+r.w+'</span></div><article class="jc"><div class="jtop">'+(i===0?'<span class="jcur">Current</span>':'')+'</div><h3>'+r.t+'</h3><div class="org">'+r.o+'</div><p class="js">'+r.s+'</p><p class="jbh">Responsibilities</p><ul class="jb">'+r.b.map(x=>'<li>'+x+'</li>').join('')+'</ul><div class="jchips">'+r.p.map(x=>'<span>'+x+'</span>').join('')+'</div></article>';
   }
   jmap.appendChild(n)});
 const jfill=jmap.querySelector('.fill');
