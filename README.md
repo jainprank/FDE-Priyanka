@@ -1,4 +1,4 @@
-# FDE portfolio (Priyanka Jain)
+# Project & Delivery Manager portfolio (Priyanka Jain)
 
 Static single-page site. Deploy as-is on Vercel (no build step).
 
